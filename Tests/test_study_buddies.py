@@ -1,7 +1,7 @@
 import pytest
 from datetime import datetime, timedelta
 
-from profile import Profile
+from user_profile import Profile
 from study_session import StudySession
 from invite_logic import InviteLogic
 from auto_cancel import AutoCancelJob
