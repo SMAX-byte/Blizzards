@@ -23,7 +23,25 @@ def main():
     cards = generator.generate(datetime(2025, 11, 18), datetime(2025, 11, 22))
 
     print(cards)
+
+    #Testing User_profile class
+    #Create 5 profiles and call their methods
+    p1 = Profile("Sam", "CIS", "Physics", "Unknown")
+    p1.update_schedule({"Monday": ["9AM", "2PM"], "Wednesday":["11AM"]})
     
+    p2 = Profile("Jamie", "Math", "CIS", "Unknown")
+    p3 = Profile("Taylor", "Biology", "Chemistry", "Unknown")
+    p4 = Profile("Jordan", "History", "English", "Unknown")
+    p5 = Profile("Casey", "Art", "Design", "Unknown")
+    profiles = [p1, p2, p3, p4, p5]
+    for profile in profiles:
+        print(profile)
+        Profile.update_schedule(profile, {"Friday": ["10AM"]})
+        print("Updated schedule:", profile.schedule)
+        print("-" * 40)
+    
+    
+
 
 if __name__ == "__main__":
     main()
