@@ -19,3 +19,4 @@ def test_event_different_dates():
     assert event1.what == "Workshop"
     assert event2.what == "Seminar"
     assert event1.when != event2.when
+    

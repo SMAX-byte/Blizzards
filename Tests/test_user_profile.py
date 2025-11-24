@@ -2,6 +2,7 @@
 # TODO 2 5 Profile objects
 #and call every one of the Profile methods in the driver.
 from Blizzards.user_profile import Profile
+from Blizzards.event import Event
 Sam = Profile("Sam", "CIS", "Physics", "Unknown")
 
 def test_profile_creation_and_methods():
@@ -33,3 +34,20 @@ def test_profile_modification():
     assert Sam.major == "Math"
     Sam.minor = "Computer Science"
     assert Sam.minor == "Computer Science"
+    
+def test_remove_event(self):
+        # Create events
+        e1 = Event("Study Loops", datetime(2024, 9, 10))
+        e2 = Event("Study Loops", datetime(2024, 9, 12))
+        e3 = Event("Trees", datetime(2024, 9, 15))
+
+        # Add them to the profile schedule
+        self.profile.schedule = [e1, e2, e3]
+
+        # Remove all events matching e1.what ("Study Loops")
+        removed = self.profile.remove_event(e1)
+
+        # Assertions
+        self.assertTrue(removed)
+        self.assertEqual(len(self.profile.schedule), 1)
+        self.assertEqual(self.profile.schedule[0].what, "Trees")
