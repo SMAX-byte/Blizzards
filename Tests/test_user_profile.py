@@ -51,3 +51,27 @@ def test_remove_event(self):
         self.assertTrue(removed)
         self.assertEqual(len(self.profile.schedule), 1)
         self.assertEqual(self.profile.schedule[0].what, "Trees")
+        
+def test_output_events(self):
+        today = datetime(2024, 9, 20)
+
+        # Events: past, today, future
+        past_event = Event("Old Topic", datetime(2024, 9, 10))
+        today_event = Event("Today's Topic", datetime(2024, 9, 20))
+        future_event = Event("Future Topic", datetime(2024, 9, 30))
+
+        self.profile.schedule = [past_event, today_event, future_event]
+
+        output = self.profile.output_events(today)
+
+        # Assertions
+        self.assertEqual(len(output), 3)
+        self.assertTrue(output[0].startswith("LATE "))
+        self.assertTrue(output[1].startswith("NOW "))
+        self.assertFalse(output[2].startswith("LATE "))
+        self.assertFalse(output[2].startswith("NOW "))
+
+        # Ensure events themselves are NOT modified
+        self.assertEqual(today_event.what, "Today's Topic")
+        self.assertEqual(past_event.what, "Old Topic")
+        self.assertEqual(future_event.what, "Future Topic")
