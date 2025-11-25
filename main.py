@@ -29,13 +29,13 @@ def main():
 
     #Testing User_profile class
     #Create 5 profiles and call their methods
-    p1 = Profile("Sam", "CIS", "Physics", "Unknown")
+    p1 = Profile(0,"Sam", "CIS", "Physics", "Unknown")
     p1.update_schedule({"Monday": ["9AM", "2PM"], "Wednesday":["11AM"]})
     
-    p2 = Profile("Jamie", "Math", "CIS", "Unknown")
-    p3 = Profile("Taylor", "Biology", "Chemistry", "Unknown")
-    p4 = Profile("Jordan", "History", "English", "Unknown")
-    p5 = Profile("Casey", "Art", "Design", "Unknown")
+    p2 = Profile(1,"Jamie", "Math", "CIS", "Unknown")
+    p3 = Profile(2,"Taylor", "Biology", "Chemistry", "Unknown")
+    p4 = Profile(3,"Jordan", "History", "English", "Unknown")
+    p5 = Profile(4,"Casey", "Art", "Design", "Unknown")
     profiles = [p1, p2, p3, p4, p5]
     for profile in profiles:
         if profile.major == "Art":
