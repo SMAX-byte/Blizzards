@@ -44,11 +44,12 @@ def main():
             profile.update_schedule(Event("Office Hours", datetime(2025, 1, 7, 15, 0)))
         else:
             profile.update_schedule(Event("General Meeting", datetime(2025, 1, 10, 10, 0)))
-    print(profile)
-    print("Updated schedule:")
-    for e in profile.schedule:
-        print("   -", e)
-    print("-" * 40)
+
+        print(profile)
+        print("Updated schedule:")
+        for e in profile.schedule:
+            print("   -", e)
+        print("-" * 40)
 
 
 
