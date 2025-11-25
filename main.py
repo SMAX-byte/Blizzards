@@ -18,7 +18,7 @@ def print_welcome_banner():
     print(banner)
 
 def main():
-    
+    print (print_welcome_banner())
 
 
 
