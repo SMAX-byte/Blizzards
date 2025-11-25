@@ -69,6 +69,3 @@ class Profile:
                 return True
             seen.add(e.when)
         return False
-
-    def __repr__(self):
-        return f"Name: {self.name}\nMajor: {self.major}\nMinor: {self.minor}\nSchedule: {self.schedule}"
