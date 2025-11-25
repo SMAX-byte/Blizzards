@@ -8,8 +8,7 @@
 from event import Event
 from datetime import datetime
 class Profile:
-    Valid_majors = {'CS', 'CIS', 'CE', 'CE', 'BINF'}
-
+    Valid_majors = {'CS', 'CIS', 'CE', 'CE', 'BINF',}
     def __init__(self, id, first_name, last_name, major, schedule=None):
 
         self.id = int(id)
