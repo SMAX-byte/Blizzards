@@ -1,4 +1,4 @@
-from Blizzards.event import Event
+from event import Event
 from datetime import datetime
 import unittest
 
