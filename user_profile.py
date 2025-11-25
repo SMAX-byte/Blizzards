@@ -76,4 +76,35 @@ class Profile:
             formatted_time = e.when.strftime("%m/%d/%Y at %I:%M %p")
             output.append(f"{prefix}{e.what} at {formatted_time}")
 
-        return output 
+        return output
+    
+    # Previous update_schedule still allowed but kept separate
+    def update_schedule_dict(self, new_schedule_dict):
+        self.schedule = new_schedule_dict
+
+    # NEW: update a single schedule entry with an Event
+    def update_schedule(self, index: int, event: Event):
+        # Prevent duplicate DateTimes
+        for existing in self.schedule:
+            if existing.when == event.when:
+                return False  # Duplicate datetime — do NOT update
+
+        # Index must be valid
+        if 0 <= index < len(self.schedule):
+            self.schedule[index] = event
+            return True
+
+        return False
+
+    # NEW: change major
+    def change_major(self, new_major: str):
+        self.major = new_major
+
+    # To help with testing: ensure no duplicate events
+    def has_duplicate_events(self):
+        seen = set()
+        for e in self.schedule:
+            if e.when in seen:
+                return True
+            seen.add(e.when)
+        return False
