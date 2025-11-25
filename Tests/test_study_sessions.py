@@ -1,10 +1,10 @@
 import unittest
 from datetime import datetime
 
-from Blizzards.user_profile import Profile
-from Blizzards.study_session import StudySession
-from Blizzards.invite_logic import InviteLogic
-from Blizzards.event import Event
+from user_profile import Profile
+from study_session import StudySession
+from invite_logic import InviteLogic
+from event import Event
 
 class TestStudySessions(unittest.TestCase):
 

@@ -1,11 +1,11 @@
 import unittest
 from datetime import datetime, timedelta
 
-from Blizzards.user_profile import Profile
-from Blizzards.study_session import StudySession
-from Blizzards.invite_logic import InviteLogic
-from Blizzards.auto_cancel import AutoCancelJob
-from Blizzards.flashcards import FlashcardGenerator
+from user_profile import Profile
+from study_session import StudySession
+from invite_logic import InviteLogic
+from auto_cancel import AutoCancelJob
+from flashcards import FlashcardGenerator
 
 
 class TestStudyBuddies(unittest.TestCase):
