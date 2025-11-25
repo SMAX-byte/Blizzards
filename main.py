@@ -1,4 +1,5 @@
 from datetime import datetime, timedelta
+from sched import Event
 from user_profile import Profile
 from study_session import StudySession
 from invite_logic import InviteLogic
@@ -44,7 +45,8 @@ def main():
 
     #Create and event to test AutoCancelJob
     e1 = Event("Math Exam", datetime.now() + timedelta(days=1))
-    auto_cancel = AutoCancelJob(e1, 2)  # Auto-cancel if
+    auto_cancel = AutoCancelJob(e1, 2)  # Auto-cancel if not confirmed in 1 hour
+    print("\nAutoCancelJob created for event:", auto_cancel.event.name)
     
 
 
