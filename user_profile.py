@@ -20,12 +20,23 @@ class Profile:
         self.schedule = schedule if schedule is not None else []
 
     def __str__(self):
-        return (f"Profile(id={self.id}, first_name={self.first_name}, "
-                f"last_name={self.last_name}, major={self.major}, "
-                f"schedule={self.schedule})")
+    # Format schedule lines
+        if not self.schedule:
+            schedule_str = "  (no events scheduled)"
+        else:
+         schedule_str = "\n".join([f"  - {e}" for e in self.schedule])
+
+        return (
+        f"Profile:\n"
+        f"  First Name: {self.first_name}\n"
+        f"  Last Name: {self.last_name}\n"
+        f"  Major: {self.major}\n"
+        f"  Schedule:\n{schedule_str}"
+    )
 
     def __repr__(self):
         return self.__str__()
+
 
     # Add event to schedule
     def add_event(self, event: Event):
