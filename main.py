@@ -4,6 +4,7 @@ from study_session import StudySession
 from invite_logic import InviteLogic
 from auto_cancel import AutoCancelJob
 from flashcards import FlashcardGenerator
+from event import Event
 
 def print_welcome_banner():
     banner = r"""
@@ -27,26 +28,30 @@ def main():
 
 
 
-    #Testing User_profile class
-    #Create 5 profiles and call their methods 
-    #using valid major:Valid_majors = {'CS', 'CIS', 'CE', 'CE', 'BINF'}
-    p1 = Profile(0,"Sam","Maxey", "CS", "Math", "Unknown")
-    p1.update_schedule({"Monday": ["9AM", "2PM"], "Wednesday":["11AM"]})
-    
-    p2 = Profile(1,"Jamie","Johnson", "CE", "History", "Unknown")
-    p3 = Profile(2,"Taylor", "Jackson", "BINF", "Chemistry", "Unknown")
-    p4 = Profile(3,"Jordan", "Michael" ,"CIS", "English", "Unknown")
-    p5 = Profile(4,"Casey","Brown" ,"CIS", "Design", "Unknown")
+  
+
+# profiles
+    p1 = Profile(0, "Sam", "Maxey", "CS")
+    p2 = Profile(1, "Jamie", "Johnson", "CE")
+    p3 = Profile(2, "Taylor", "Jackson", "BINF")
+    p4 = Profile(3, "Jordan", "Michael", "CIS")
+    p5 = Profile(4, "Casey", "Brown", "CIS")        
     profiles = [p1, p2, p3, p4, p5]
+
     for profile in profiles:
         if profile.major == "CIS":
-            profile.update_schedule({"Tuesday": ["1PM", "3PM"]})
+            profile.update_schedule(Event("Team Meeting", datetime(2025, 1, 7, 13, 0)))
+            profile.update_schedule(Event("Office Hours", datetime(2025, 1, 7, 15, 0)))
         else:
-            profile.update_schedule({"Friday": ["10AM"]})
+            profile.update_schedule(Event("General Meeting", datetime(2025, 1, 10, 10, 0)))
+
         print(profile)
-        print("Updated schedule:", profile.schedule)
+        print("Updated schedule:")
+        for e in profile.schedule:
+            print("   -", e)
         print("-" * 40)
-    
+
+
 
 
 
