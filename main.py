@@ -30,10 +30,10 @@ def main():
     #Testing User_profile class
     #Create 5 profiles and call their methods 
     #using valid major:Valid_majors = {'CS', 'CIS', 'CE', 'CE', 'BINF'}
-    p1 = Profile(0,"Sam", "CS", "Math", "Unknown")
+    p1 = Profile(0,"Sam","Maxey", "CS", "Math", "Unknown")
     p1.update_schedule({"Monday": ["9AM", "2PM"], "Wednesday":["11AM"]})
     
-    p2 = Profile(1,"Jamie","Maxey", "CE", "History", "Unknown")
+    p2 = Profile(1,"Jamie","Johnson", "CE", "History", "Unknown")
     p3 = Profile(2,"Taylor", "Jackson", "BINF", "Chemistry", "Unknown")
     p4 = Profile(3,"Jordan", "Michael" ,"CIS", "English", "Unknown")
     p5 = Profile(4,"Casey","Brown" ,"CIS", "Design", "Unknown")
