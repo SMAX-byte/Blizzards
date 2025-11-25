@@ -16,8 +16,7 @@ def main():
 
     syllabus = [
     {"date": datetime(2025, 11, 18), "flashcards": ["Define sorting", "Explain bubble sort"]},
-    {"date": datetime(2025, 11, 20), "flashcards": ["Graph basics", "DFS vs BFS"]}
-]
+    {"date": datetime(2025, 11, 20), "flashcards": ["Graph basics", "DFS vs BFS"]}]
 
     generator = FlashcardGenerator(syllabus)
     cards = generator.generate(datetime(2025, 11, 18), datetime(2025, 11, 22))
@@ -42,6 +41,10 @@ def main():
         print(profile)
         print("Updated schedule:", profile.schedule)
         print("-" * 40)
+
+    #Create and event to test AutoCancelJob
+    e1 = Event("Math Exam", datetime.now() + timedelta(days=1))
+    auto_cancel = AutoCancelJob(e1, 2)  # Auto-cancel if
     
 
 

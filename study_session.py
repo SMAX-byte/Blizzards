@@ -19,3 +19,6 @@ class StudySession:
     def cancel(self):
         print(f"Cancelling study session on {self.topic}")
         self.status = "cancelled"
+    
+    def __repr__(self):
+        return f"StudySession(topic={self.topic}, proposer={self.proposer}, time={self.time}, place={self.place}, status={self.status})"
