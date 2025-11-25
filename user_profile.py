@@ -8,13 +8,15 @@ class Profile:
         self.id = int(id)
         self.first_name = first_name.title()
         self.last_name = last_name.title()
-        self.major = major.upper()
 
+        # Validate major
+        self.major = major.upper()
         if self.major not in self.Valid_majors:
             raise ValueError(
                 f"Invalid major: {self.major}. Valid majors are: {', '.join(self.Valid_majors)}"
             )
 
+        # Schedule begins empty unless provided
         self.schedule = schedule if schedule is not None else []
 
     def __str__(self):
@@ -25,17 +27,17 @@ class Profile:
     def __repr__(self):
         return self.__str__()
 
-    # Add event
+    # Add event to schedule
     def add_event(self, event: Event):
         self.schedule.append(event)
 
-    # Remove all events with same "what"
+    # Remove all events matching the same "what"
     def remove_event(self, event: Event):
         before = len(self.schedule)
         self.schedule = [e for e in self.schedule if e.what != event.what]
         return len(self.schedule) < before
 
-    # Output formatted events
+    # Output events relative to a date
     def output_events(self, current_date: datetime):
         output = []
         for e in self.schedule:
@@ -45,22 +47,21 @@ class Profile:
                 prefix = "NOW "
             else:
                 prefix = ""
-
             formatted_time = e.when.strftime("%m/%d/%Y at %I:%M %p")
             output.append(f"{prefix}{e.what} at {formatted_time}")
         return output
 
-    # Update schedule entry (no duplicates allowed)
+    # Update an event at an index (no duplicate datetimes)
     def update_schedule_entry(self, index: int, event: Event):
         for existing in self.schedule:
             if existing.when == event.when:
-                return False  # Duplicate datetime
+                return False  # Duplicate datetime → reject
         if 0 <= index < len(self.schedule):
             self.schedule[index] = event
             return True
         return False
 
-    # Change major
+    # Change major safely
     def change_major(self, new_major: str):
         new_major = new_major.upper()
         if new_major in self.Valid_majors:
