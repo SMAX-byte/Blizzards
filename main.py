@@ -5,6 +5,8 @@ from invite_logic import InviteLogic
 from auto_cancel import AutoCancelJob
 from flashcards import FlashcardGenerator
 
+import random
+
 def print_welcome_banner():
     banner = r"""
     ================================================
@@ -51,6 +53,20 @@ def main():
     auto_cancel = AutoCancelJob(e1, 2)  # Auto-cancel if not confirmed in 1 hour
     print("\nAutoCancelJob created for event:", auto_cancel.event.name)
     
+    # Create 33 study sessions
+    sessions = []
+    times = [datetime.now() + timedelta(days=i, hours=j) for i in range(1, 10) for j in range(9, 18)]
+    topics = ["Calculus", "Calculus II", "Info Systems",  "Data Structures", "Chemistry"]
+    places = ["Library", "Cafeteria", "Admin", "Zoom"]
+    for i in range(33):
+        session = StudySession(proposer=f"User{i}", time=random.choice(times), place=random.choice(places),topic=random.choice(topics), status="pending")
+        sessions.append(session)
+    for s in sessions:
+        print(f"{s.proposer} scheduled {s.topic} at {s.place} ({s.time})")
+
+
+
+
 
 
 
