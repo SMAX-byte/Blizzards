@@ -89,6 +89,9 @@ def main():
     profileA, profileB = random.sample(profiles, 2)
     chosen_session = random.choice(study_sessions)
 
+    session1 = StudySession(proposer=profileA, time="3PM", place="Library", topic="Sorting Algorithms")
+    session1.invite(profileA, profileB )
+
 
 
 
