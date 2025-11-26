@@ -45,6 +45,11 @@ def main():
         print(profile)
         print("Updated schedule:", profile.schedule)
         print("-" * 40)
+
+    #Create and event to test AutoCancelJob
+    e1 = Event("Math Exam", datetime.now() + timedelta(days=1))
+    auto_cancel = AutoCancelJob(e1, 2)  # Auto-cancel if not confirmed in 1 hour
+    print("\nAutoCancelJob created for event:", auto_cancel.event.name)
     
 
 
