@@ -70,7 +70,10 @@ def main():
         sessions.append(session)
     for s in sessions:
         print(f"{s.proposer} scheduled {s.topic} at {s.place} ({s.time})")
-    
+
+    #remove sessions from two profiles
+    for s in sessions:
+        remove_two_sessions(s, p1, p2)
 
 
 
