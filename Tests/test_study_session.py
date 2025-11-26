@@ -1,5 +1,8 @@
 from study_session import StudySession
 import unittest
+from datetime import datetime
+
+#Test that the str method displays using the format "Friday, Nov 21, 2025 at 11:28 PM has a study session on 'How to write use cases'".
 class TestStudySession(unittest.TestCase):
     def setUp(self):
         self.Alex = StudySession(proposer="Alex", time="Mon 10am", place="Library", topic="Algorithms")
@@ -30,3 +33,12 @@ class TestStudySession(unittest.TestCase):
     def test_cancel_method(self):
         self.Alex.cancel()
         self.assertEqual(self.Alex.status, "cancelled")
+    
+    def test_str_method(self):
+        session_time = datetime(2025, 11, 21, 23, 28)
+        session = StudySession(proposer="Jordan", time=session_time, place="Library", topic="How to write use cases")
+        expected_str = "Friday, Nov 21, 2025 at 11:28 PM has a study session on 'How to write use cases'."
+        self.assertEqual(str(session), expected_str)    
+
+if __name__ == '__main__':
+    unittest.main()
