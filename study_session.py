@@ -1,13 +1,24 @@
 #Implement StudySession Class
 #Attributes: proposer, time, place, topic, status
 #Methods: invite(), confirm(), cancel()
+from datetime import datetime
 class StudySession:
-    def __init__(self, proposer, time, place, topic, status="pending"):
+    def __init__(self, proposer, time, place, topic,reason = None ,status="pending"):
+        if time is None or not isinstance(time, datetime):
+            raise ValueError("Time must be provided")
+        if not place or not isinstance(place, str):
+            raise ValueError("Place must be provided")
+        if reason is None:
+            reason = topic
+        if not reason or not isinstance(reason, str):
+            raise ValueError("Reason must be provided")
+        
         self.proposer = proposer
         self.time = time
         self.place = place
         self.topic = topic
         self.status = status
+        self.reason = reason
 
     def invite(self, invitee):
         print(f"Inviting {invitee} to study session on {self.topic}")
