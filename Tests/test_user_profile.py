@@ -3,6 +3,8 @@
 #and call every one of the Profile methods in the driver.
 from user_profile import Profile
 from event import Event
+from study_session import StudySession
+from datetime import datetime
 import unittest
 
 class TestProfile(unittest.TestCase):
@@ -69,6 +71,33 @@ class TestProfile(unittest.TestCase):
         profile = Profile(4, "michael", "brown", "ce")
         self.assertEqual(profile.first_name, "Michael")
         self.assertEqual(profile.last_name, "Brown")
+###
+class TestSortEvents(unittest.TestCase):
+
+    def test_sort_events_basic(self):
+        p = Profile(10, "john", "doe", "CS")
+
+        e1 = Event("First", datetime(2024, 5, 20, 10, 0))
+        e2 = Event("Second", datetime(2024, 5, 22, 9, 0))
+        e3 = Event("Third", datetime(2024, 5, 21, 15, 0))
+
+        p.schedule.extend([e1, e2, e3])
+        p.sort_events()
+
+        self.assertEqual(p.schedule, [e2, e3, e1])
+
+    def test_sort_events_with_study_session(self):
+        p = Profile(11, "amy", "smith", "CIS")
+
+        e1 = Event("Old Event", datetime(2024, 4, 10, 10, 0))
+        s1 = StudySession("Amy", datetime(2024, 4, 12, 14, 30), "Library", "Review")
+        e2 = Event("Newest Event", datetime(2024, 4, 15, 9, 0))
+
+        p.schedule.extend([e1, s1, e2])
+        p.sort_events()
+
+        # Newest → oldest
+        self.assertEqual(p.schedule, [e2, s1, e1])
 
 if __name__ == '__main__':
     unittest.main()
