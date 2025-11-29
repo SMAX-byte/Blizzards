@@ -10,14 +10,26 @@ class StudySession:
         self.status = status
 
     def invite(self, profile1, profile2):
-        times_in_profile1 = any(session.time == self.time for session in profile1.schedule)
-        times_in_profile2 = any(session.time == self.time for session in profile2.schedule)
-        if not (times_in_profile1 and times_in_profile2):
-            profile1.update_schedule(self)
-            profile2.update_schedule(self)
-            print(f"Invited {profile1.first_name} and {profile2.first_name} to study session on {self.topic} at {self.time}")
-        else:
-            print("Cannot invite: Time conflict in both profiles' schedules.")
+        def has_conflict(profile):
+            for item in profile.schedule:
+                if hasattr(item, "time") and item.time == self.time:
+                    return True
+                if hasattr(item, "when") and item.when == self.time:
+                    return True
+            return False
+
+        if has_conflict(profile1) and has_conflict(profile2):
+            print("Cannot invite: DateTime already scheduled in both profiles.")
+            return False
+
+        profile1.schedule.append(self)
+        profile2.schedule.append(self)
+
+        print(
+            f"Invited {profile1.first_name} and {profile2.first_name} "
+            f"to study session on '{self.topic}' at {self.time}"
+        )
+        return True
 
     def confirm(self):
         print(f"Confirming study session on {self.topic}")

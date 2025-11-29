@@ -4,7 +4,7 @@ from study_session import StudySession
 from invite_logic import InviteLogic
 from auto_cancel import AutoCancelJob
 from flashcards import FlashcardGenerator
-
+from event import Event
 import random
 
 def print_welcome_banner():
@@ -30,6 +30,46 @@ def remove_two_sessions(session, profileA, profileB):
         print(f"Removed session on {session.topic} from one or both profiles' schedules.")
     else:
         print("Session not found in either profile's schedule.")
+
+def generate_study_sessions():
+    profile1 = Profile(300123, "Alice", "Jones", "CS")
+    profile2 = Profile(300456, "Bob", "Smith", "CIS")
+
+    topics = [
+        "Algorithms", "Data Structures", "Operating Systems", "Networks",
+        "Databases", "Software Engineering", "Cybersecurity",
+        "Machine Learning", "Artificial Intelligence", "Web Development"
+    ]
+    places = ["Library", "UC", "Online", "NCF", "Admin", "Xavier South"]
+    base_time = datetime(2025, 11, 21, 10, 0)
+
+    study_sessions = []
+    for i in range(30):
+        time = base_time + timedelta(days=random.randint(0, 10), hours=random.randint(0, 8))
+        topic = random.choice(topics)
+        place = random.choice(places)
+        session = StudySession(f"User{i}", time, place, topic, "pending")
+        study_sessions.append(session)
+
+    for session in study_sessions[:10]:
+        event = Event(session.topic, session.time)
+        event.add_event(profile1)
+
+    for session in study_sessions[10:20]:
+        event = Event(session.topic, session.time)
+        event.add_event(profile2)
+
+    for session in study_sessions[20:]:
+        session.invite(profile1, profile2)
+
+    # Print schedules for verification
+    print(f"\nProfile 1 Schedule ({profile1.first_name} {profile1.last_name}):")
+    for e in profile1.schedule:
+        print(f"- {e}")
+
+    print(f"\nProfile 2 Schedule ({profile2.first_name} {profile2.last_name}):")
+    for e in profile2.schedule:
+        print(f"- {e}")
 
 def main():
     print (print_welcome_banner())
@@ -100,3 +140,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    generate_study_sessions()
