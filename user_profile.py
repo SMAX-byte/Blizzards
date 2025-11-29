@@ -109,3 +109,9 @@ class Profile:
                 return True
             seen.add(e.when)
         return False
+    # Sort Study Sessions Earliest → Latest
+    def sort_study_sessions(self):
+        if not hasattr(self, "schedule") or len(self.schedule) == 0:
+            return []
+        return sorted(self.schedule, key=lambda session: session.time)
+
