@@ -36,4 +36,25 @@ class TestProfile(unittest.TestCase):
         self.Sam.major = "Math"
         self.assertEqual(self.Sam.major, "Math")
         self.Sam.minor = "Computer Science"
-        self.assertEqual(self.Sam.minor, "Computer Science")    
+        self.assertEqual(self.Sam.minor, "Computer Science") 
+
+    def test_str_and_repr_methods(self):
+        profile_str = str(self.Sam)
+        profile_repr = repr(self.Sam)
+        self.assertIsInstance(profile_str, str)
+        self.assertIsInstance(profile_repr, str)
+        self.assertEqual(profile_str, profile_repr)
+
+    def test_add_event(self):
+        event_added = self.Sam.add_event("Math Exam on Friday at 10AM")
+        self.assertIn("Math Exam on Friday at 10AM", self.Sam.schedule)
+        self.assertTrue(event_added)
+
+    def test_remove_event(self):
+        self.Sam.add_event("Math Exam on Friday at 10AM")
+        event_removed = self.Sam.remove_event("Math Exam on Friday at 10AM")
+        self.assertNotIn("Math Exam on Friday at 10AM", self.Sam.schedule)
+        self.assertTrue(event_removed)
+
+if __name__ == '__main__':
+    unittest.main()   
