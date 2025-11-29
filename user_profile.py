@@ -27,6 +27,21 @@ class Profile:
     def __str__(self):
         return f"Profile(id={self.id}, first_name={self.first_name}, last_name={self.last_name}, major={self.major}, schedule={self.schedule})"
 
+    def sort_events(self):
+        """
+        Sort the events in the schedule in reverse chronological order.
+        Newest → Oldest.
+        """
+        # Some schedule items may be Event objects, others StudySession objects
+        # So we must check whether they have attribute "when" or "time"
+        def get_datetime(item):
+            if hasattr(item, "when"):
+                return item.when
+            if hasattr(item, "time"):
+                return item.time
+            return datetime.min  # fallback to keep unknown items at the bottom
+
+        self.schedule.sort(key=get_datetime, reverse=True)
 
 
 
