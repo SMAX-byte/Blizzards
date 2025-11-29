@@ -82,6 +82,22 @@ class TestProfile(unittest.TestCase):
 
         sorted_sessions = p.sort_study_sessions()
         self.assertEqual(sorted_sessions, [s2, s3, s1])
+        
+    def test_upcoming_sessions(self):
+        p = Profile("Lonzo", "CIS", "Math")
+
+        now = datetime.now()
+        past = StudySession(p, now - timedelta(hours=2), "Lab", "Past")
+        today = StudySession(p, now, "Library", "Today")
+        future = StudySession(p, now + timedelta(days=1), "Dorm", "Future")
+
+        p.schedule = [past, today, future]
+
+        result = p.upcoming_study_sessions(now)
+
+        self.assertIn(today, result)
+        self.assertIn(future, result)
+        self.assertNotIn(past, result)
 
 if __name__ == '__main__':
     unittest.main()
