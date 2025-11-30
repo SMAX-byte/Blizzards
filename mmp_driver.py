@@ -57,3 +57,16 @@ def random_study_session(proposer):
     place = random.choice(["Library", "Cafe", "Online", "Study Room", "Park"])
     time = random_datetime()
     return StudySession(proposer, time, place, topic)
+
+def random_111_profiles():
+    profiles = []
+    for i in range (1,112):
+        first_name, last_name = random_name().split(" , ")
+        major = random_major()
+        profile = Profile(i, first_name, last_name, major)
+        for _ in range(random.randint(0,10)):
+            profile.add_event(random_event())
+        profiles.append(profile)
+
+
+    #Find the longest schedule
