@@ -120,6 +120,10 @@ class TestProfile(unittest.TestCase):
 
         self.assertEqual(counts[10], 2)
         self.assertEqual(counts[14], 1)
+        
+    def test_best_hour(self):
+        data = {10: 3, 8: 3, 14: 1}
+        self.assertEqual(Profile.best_hour(data), 8)
 
     
 if __name__ == '__main__':
