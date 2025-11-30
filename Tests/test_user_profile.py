@@ -151,6 +151,17 @@ class TestProfile(unittest.TestCase):
         added = p.add_study_session(s1)
         self.assertTrue(added)
         self.assertIn(s1, p.schedule)
+        
+    def test_add_study_session_fail_on_conflict(self):
+        p = Profile("Sam", "CIS", "Math")
+        s1 = StudySession(p, datetime(2025, 1, 2, 12, 0), "STEM", "Loops")
+        s2 = StudySession(p, datetime(2025, 1, 2, 12, 0), "Library", "Trees")
+
+        p.schedule = [s1]
+        added = p.add_study_session(s2)
+
+        self.assertFalse(added)
+        self.assertEqual(len(p.schedule), 1)
 
     
 if __name__ == '__main__':
