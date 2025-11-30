@@ -41,5 +41,19 @@ class TestMMPDriver(unittest.TestCase):
             self.assertIsInstance(profile.last_name, str)
             self.assertIn(profile.major, self.driver.MAJORS)
 
+    def test_longest_schedule(self):
+        profiles = self.driver.random_111_profiles()
+        lgst_sched = max(len(profile.schedule) for profile in profiles)
+        longest = [profile for profile in profiles if len(profile.schedule) == lgst_sched]
+        for profile in longest:
+            self.assertEqual(len(profile.schedule), lgst_sched)
+    
+    def test_create_30_profiles(self):
+        profiles = self.driver.create_30_profiles()
+        self.assertEqual(len(profiles), 2)
+        for profile in profiles:
+            self.assertIsInstance(profile, self.driver.Profile)
+            self.assertTrue(hasattr(profile, 'schedule'))
+            self.assertTrue(len(profile.schedule) >= 10)  # Each should have at least 10 sessions
 if __name__ == "__main__":
     unittest.main()
