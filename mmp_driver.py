@@ -70,3 +70,13 @@ def random_111_profiles():
 
 
     #Find the longest schedule
+    lgst_sched = max(len(profile.schedule) for profile in profiles)
+    longest = [profile for profile in profiles if len(profile.schedule) == lgst_sched]
+    print("Profiles with the longest schedules:")
+    for profile in longest:
+        print(profile)
+        for event in profile.schedule:
+            print(f"Name:{profile.first_name} {profile.last_name}  has  -", len(profile.schedule), " events")
+        print("-" * 40)
+
+    return profiles
