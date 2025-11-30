@@ -6,6 +6,7 @@
 # Create a constructor and a __str__ method.  The first and last names must be formatted in Titlecase.  
 # The major must be formatted in TITLECASE.  The schedule must begin as an empty list.
 from event import Event
+from study_session import StudySession
 from datetime import datetime
 class Profile:
     Valid_majors = {'CS', 'CIS', 'CE', 'CE', 'BINF'}

@@ -3,6 +3,7 @@
 #and call every one of the Profile methods in the driver.
 from user_profile import Profile
 from event import Event
+from study_session import StudySession
 import unittest
 
 class TestProfile(unittest.TestCase):
