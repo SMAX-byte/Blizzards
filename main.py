@@ -26,30 +26,48 @@ def print_welcome_banner():
 def main():
     print (print_welcome_banner())
 
+    while True:
+        print("\n==================== STUDY BUDDY APP ====================")
+        print("1. Create Profile")
+        print("2. View Profile")
+        print("3. List All Profiles")
+        print("4. Change Major")
+        print("5. Add Event")
+        print("6. Remove Event")
+        print("7. Sort Events")
+        print("8. View Events")
+        print("9. Create and Invite Study Session")
+        print("10. Accept Invite")
+        print("11. Decline Invite")
+        print("12. Auto-Cancel Session")
+        print("13. Remove Study Session From Both Profiles")
+        print("14. Exit")
+
+        choice = input("Select option: ").strip()
+
+        if choice == "1": create_profile()
+        elif choice == "2": view_profile()
+        elif choice == "3": list_profiles()
+        elif choice == "4": change_major()
+        elif choice == "5": add_event()
+        elif choice == "6": remove_event()
+        elif choice == "7": sort_events()
+        elif choice == "8": view_events()
+        elif choice == "9": invite_two_profiles()
+        elif choice == "10": accept_invite()
+        elif choice == "11": decline_invite()
+        elif choice == "12": auto_cancel_session()
+        elif choice == "13": remove_session_from_both()
+        elif choice == "14":
+            print("Goodbye.")
+            break
+        else:
+            print("Invalid option. Try again.")
 
 
   
 
-# profiles
-    p1 = Profile(0, "Sam", "Maxey", "CS")
-    p2 = Profile(1, "Jamie", "Johnson", "CE")
-    p3 = Profile(2, "Taylor", "Jackson", "BINF")
-    p4 = Profile(3, "Jordan", "Michael", "CIS")
-    p5 = Profile(4, "Casey", "Brown", "CIS")        
-    profiles = [p1, p2, p3, p4, p5]
 
-    for profile in profiles:
-        if profile.major == "CIS":
-            profile.add_event(Event("Team Meeting", datetime(2025, 1, 7, 13, 0)))
-            profile.add_event(Event("Office Hours", datetime(2025, 1, 7, 15, 0)))
-        else:
-            profile.add_event(Event("General Meeting", datetime(2025, 1, 10, 10, 0)))
-
-        print(profile)
-        print("Updated schedule:")
-        for e in profile.schedule:
-            print("   -", e)
-        print("-" * 40)
 
 
 
