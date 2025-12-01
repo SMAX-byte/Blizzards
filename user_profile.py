@@ -140,4 +140,44 @@ class Profile:
             if session.time >= current_time
         ]
         return sorted(upcoming, key=lambda s: s.time)
+    
+    @staticmethod
+    def count_availability_by_hour(profiles):
+        """
+        Returns a dictionary {hour: count}.
+        Uses only simple loops and basic dict operations.
+        """
+        hour_counts = {}
+
+        for profile in profiles:
+            for event in profile.schedule:
+                hour = event.when.hour
+
+                # If hour not in dictionary yet, start at 0
+                if hour not in hour_counts:
+                    hour_counts[hour] = 0
+
+                # Increase count
+                hour_counts[hour] += 1
+
+        return hour_counts
+    
+    @staticmethod
+    def best_hour(hour_dict):
+        if len(hour_dict) == 0:
+            return None
+
+        # Start with the first hour in the dictionary
+        best_hour = None
+        best_value = -1
+
+        for hour in hour_dict:
+            count = hour_dict[hour]
+
+            # If count is higher OR same count but earlier hour
+            if count > best_value or (count == best_value and (best_hour is None or hour < best_hour)):
+                best_hour = hour
+                best_value = count
+
+        return best_hour
 

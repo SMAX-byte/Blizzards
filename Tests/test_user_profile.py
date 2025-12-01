@@ -99,5 +99,16 @@ class TestSortEvents(unittest.TestCase):
         # Newest → oldest
         self.assertEqual(p.schedule, [e2, s1, e1])
 
+        self.assertEqual(counts[10], 2)
+        self.assertEqual(counts[14], 1)
+        
+    def test_best_hour(self):
+        data = {10: 3, 8: 3, 14: 1}
+        self.assertEqual(Profile.best_hour(data), 8)
+        
+    def test_best_hour_empty(self):
+        self.assertIsNone(Profile.best_hour({}))
+
+    
 if __name__ == '__main__':
     unittest.main()
