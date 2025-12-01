@@ -69,6 +69,7 @@ def generate_study_sessions():
     print(f"\nProfile 2 Schedule ({profile2.first_name} {profile2.last_name}):")
     for e in profile2.schedule:
         print(f"- {e}")
+    # updated banner integration
 
 def main():
     print_welcome_banner()
