@@ -133,6 +133,7 @@ def main():
     session1.invite(profileA, profileB )
 
     #Create 111 student profiles and output student(s) with the longest schedule
+    student_profiles = []
 
 
 
