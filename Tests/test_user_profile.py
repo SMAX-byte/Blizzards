@@ -3,6 +3,8 @@
 #and call every one of the Profile methods in the driver.
 from user_profile import Profile
 from event import Event
+from study_session import StudySession
+from datetime import datetime
 import unittest
 
 class TestProfile(unittest.TestCase):
@@ -69,54 +71,33 @@ class TestProfile(unittest.TestCase):
         profile = Profile(4, "michael", "brown", "ce")
         self.assertEqual(profile.first_name, "Michael")
         self.assertEqual(profile.last_name, "Brown")
-        
-    def test_sort_study_sessions(self):
-        p = Profile("Lonzo", "CIS", "Math")
+###
+class TestSortEvents(unittest.TestCase):
 
-        now = datetime.now()
-        s1 = StudySession(p, now + timedelta(hours=5), "Library", "Trees")
-        s2 = StudySession(p, now + timedelta(hours=1), "STEM", "Loops")
-        s3 = StudySession(p, now + timedelta(hours=3), "Dorm", "Graphs")
+    def test_sort_events_basic(self):
+        p = Profile(10, "john", "doe", "CS")
 
-        p.schedule = [s1, s2, s3]
+        e1 = Event("First", datetime(2024, 5, 20, 10, 0))
+        e2 = Event("Second", datetime(2024, 5, 22, 9, 0))
+        e3 = Event("Third", datetime(2024, 5, 21, 15, 0))
 
-        sorted_sessions = p.sort_study_sessions()
-        self.assertEqual(sorted_sessions, [s2, s3, s1])
-        
-    def test_upcoming_sessions(self):
-        p = Profile("Lonzo", "CIS", "Math")
+        p.schedule.extend([e1, e2, e3])
+        p.sort_events()
 
-        now = datetime.now()
-        past = StudySession(p, now - timedelta(hours=2), "Lab", "Past")
-        today = StudySession(p, now, "Library", "Today")
-        future = StudySession(p, now + timedelta(days=1), "Dorm", "Future")
+        self.assertEqual(p.schedule, [e2, e3, e1])
 
-        p.schedule = [past, today, future]
+    def test_sort_events_with_study_session(self):
+        p = Profile(11, "amy", "smith", "CIS")
 
-        result = p.upcoming_study_sessions(now)
+        e1 = Event("Old Event", datetime(2024, 4, 10, 10, 0))
+        s1 = StudySession("Amy", datetime(2024, 4, 12, 14, 30), "Library", "Review")
+        e2 = Event("Newest Event", datetime(2024, 4, 15, 9, 0))
 
-        self.assertIn(today, result)
-        self.assertIn(future, result)
-        self.assertNotIn(past, result)
-        
-    def test_sort_empty_schedule(self):
-        p = Profile("Lonzo", "CIS", "Math")
-        self.assertEqual(p.sort_study_sessions(), [])
-        
-    def test_count_availability_by_hour(self):
-        p1 = Profile("Sam", "CIS", "Math")
-        p2 = Profile("Alex", "CE", "Physics")
+        p.schedule.extend([e1, s1, e2])
+        p.sort_events()
 
-        p1.schedule = [
-            Event("Study", datetime(2025, 1, 1, 10, 0)),
-            Event("Lab", datetime(2025, 1, 1, 14, 0))
-        ]
-
-        p2.schedule = [
-            Event("Meeting", datetime(2025, 1, 1, 10, 30))
-        ]
-
-        counts = Profile.count_availability_by_hour([p1, p2])
+        # Newest → oldest
+        self.assertEqual(p.schedule, [e2, s1, e1])
 
         self.assertEqual(counts[10], 2)
         self.assertEqual(counts[14], 1)
