@@ -1,6 +1,5 @@
 from event import Event
 from datetime import datetime
-
 class Profile:
     Valid_majors = {'CS', 'CIS', 'CE', 'BINF'}
 

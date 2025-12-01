@@ -14,3 +14,8 @@ class AutoCancelJob(StudySession):
 
     def notify_buddies(self):
         print(f"Notifying buddies of cancellation for study session on {self.topic}")
+    
+    def __repr__(self):
+        return (f"AutoCancelJob(topic='{self.topic}', proposer='{self.proposer}', "
+            f"time='{self.time}', place='{self.place}', status='{self.status}', "
+            f"cancel_after_hours={self.cancel_after_hours})")
