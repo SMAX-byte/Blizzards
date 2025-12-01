@@ -72,6 +72,7 @@ def generate_study_sessions():
         print(f"- {e}")
 
 def main():
+    print("Driver started")
     print_welcome_banner()
 
 
