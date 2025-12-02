@@ -43,7 +43,8 @@ def run_StudyBuddy_app():
         print("11. Decline Invite")
         print("12. Auto-Cancel Session")
         print("13. Remove Study Session From Both Profiles")
-        print("14. Exit")
+        print("14. View Today's Events Only")
+        print("15. Exit")
 
         choice = input("Select option: ").strip()
 
@@ -60,7 +61,8 @@ def run_StudyBuddy_app():
         elif choice == "11": decline_invite()
         elif choice == "12": auto_cancel_session()
         elif choice == "13": remove_session_from_both()
-        elif choice == "14":
+        elif choice == "14": view_events_today()
+        elif choice == "15":
             print("Goodbye.")
             break
         else:
@@ -240,7 +242,7 @@ def view_events():
     for line in lines:
         print("  " + line)
 
-        
+
 def view_events_today():
     print("\n--- View Today’s Events Only ---")
     p = choose_profile()
