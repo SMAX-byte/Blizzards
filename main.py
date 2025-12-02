@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from py_compile import main
 from user_profile import Profile
 from study_session import StudySession
 from invite_logic import InviteLogic
@@ -406,7 +405,6 @@ def remove_session_from_both():
         print("Study session removed from both profiles.")
     else:
         print("Nothing was removed.")
-
 
 if __name__ == "__main__":
     print_welcome_banner()
