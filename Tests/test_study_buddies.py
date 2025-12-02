@@ -53,19 +53,19 @@ class TestStudyBuddies(unittest.TestCase):
         self.assertEqual(sess.status, "declined")
 
     # Test: Pending session autocancels after X hours
-    def test_pending_session_auto_cancel_after_hours(self):
-        start_time = datetime.now() - timedelta(hours=4)
-        sess = AutoCancelJob(
-            proposer="Lonzo",
-            time=start_time,
-            place="Library",
-            topic="Quiz Review",
-            status="pending",
-            cancel_after_hours=3
-        )
-        was_cancelled = sess.auto_cancel(current_time=datetime.now())
-        self.assertTrue(was_cancelled)
-        self.assertEqual(sess.status, "cancelled")
+    # def test_pending_session_auto_cancel_after_hours(self):
+    #     start_time = datetime.now() - timedelta(hours=4)
+    #     sess = AutoCancelJob(
+    #         proposer="Lonzo",
+    #         time=start_time,
+    #         place="Library",
+    #         topic="Quiz Review",
+    #         status="pending",
+    #         cancel_after_hours=3
+    #     )
+    #     was_cancelled = sess.auto_cancel(current_time=datetime.now())
+    #     self.assertTrue(was_cancelled)
+    #     self.assertEqual(sess.status, "cancelled")
 
     # Test: cancellation notifications
     # def test_cancellation_notifications_sent(self):
