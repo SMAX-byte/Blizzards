@@ -240,6 +240,37 @@ def view_events():
     for line in lines:
         print("  " + line)
 
+        
+def view_events_today():
+    print("\n--- View Today’s Events Only ---")
+    p = choose_profile()
+    if not p:
+        return
+
+    if not p.schedule:
+        print("No events for this profile.")
+        return
+
+    today = datetime.now().date()
+
+    today_events = []
+    for item in p.schedule:
+        event_time = getattr(item, "when", getattr(item, "time", None))
+        if event_time and event_time.date() == today:
+            today_events.append(item)
+
+    if not today_events:
+        print("No events scheduled for today.")
+        return
+
+    print("\nToday’s Events:")
+    for item in today_events:
+        if isinstance(item, Event):
+            print(f"  - {item}")
+        elif isinstance(item, StudySession):
+            print(f"  - Study Session: {item.topic} at {item.time} in {item.place} [{item.status}]")
+
+
 
 def invite_two_profiles():
     print("\n--- Create and Invite Study Session ---")
