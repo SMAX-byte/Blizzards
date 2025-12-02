@@ -71,6 +71,27 @@ def generate_study_sessions():
     for e in profile2.schedule:
         print(f"- {e}")
 
+def generate_student_profiles():
+    student_profiles = []
+    majors = ["CS", "CIS", "BINF", "Art", "Math", "Physics"]
+    first_names = ["Alex", "Jordan", "Taylor", "Morgan", "Casey", "Riley", "Jamie", "Cameron", "Drew", "Quinn"]
+    last_names = ["Smith", "Johnson", "Williams", "Brown", "Jones", "Garcia", "Miller", "Davis", "Rodriguez", "Martinez"]
+    for i in range(111):
+        profile = Profile(900260 + i, random.choice(first_names), random.choice(last_names), random.choice(majors))
+        num_events = random.randint(0, 10)
+        for j in range(num_events):
+            event_time = datetime.now() + timedelta(days=random.randint(0, 30), hours=random.randint(0, 23))
+            event = Event(f"Event{j+1}", event_time)
+            profile.update_schedule(event)
+            student_profiles.append(profile)
+
+def find_longest_schedules(profiles):
+    max_length = max(len(profile.schedule) for profile in profiles)
+    longest_schedules = [profile for profile in profiles if len(profile.schedule) == max_length]
+    print(f"\nStudent(s) with the longest schedule ({max_length} events):")
+    for profile in longest_schedules:
+        print(f"- {profile.first_name} {profile.last_name} (ID: {profile.id})")
+
 def main():
     print_welcome_banner()
 
@@ -132,6 +153,8 @@ def main():
     session1 = StudySession(proposer=profileA, time="3PM", place="Library", topic="Sorting Algorithms")
     session1.invite(profileA, profileB )
 
+    #Create 111 student profiles and output student(s) with the longest schedule
+    student_profiles = []
 
 
 
