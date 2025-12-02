@@ -119,9 +119,8 @@ def _parse_datetime() -> datetime | None:
         return None
 
 
-# ---------------------------------------------------------------------
 #  MENU OPTION IMPLEMENTATIONS
-# ---------------------------------------------------------------------
+
 def create_profile():
     print("\n--- Create Profile ---")
     first = input("First name: ").strip()
@@ -167,7 +166,7 @@ def change_major():
         return
 
     new_major = input("Enter new major (CS, CE, CIS, BINF): ").strip()
-    # use your change_major method
+    # use change_major method
     if hasattr(p, "change_major"):
         p.change_major(new_major)
         print(f"Major updated to {p.major}")
@@ -188,7 +187,7 @@ def add_event():
         return
 
     e = Event(what, when)
-    # use Event.add_event so we respect your duplicate/conflict rules
+   
     e.add_event(p)
 
 
@@ -203,7 +202,7 @@ def remove_event():
         return
 
     what = input("Enter the event description (what) to remove: ").strip()
-    # Profile.remove_event only checks .what, so we can pass a dummy Event
+
     dummy = Event(what, datetime.now())
     removed = p.remove_event(dummy)
     if removed:
@@ -303,7 +302,7 @@ def accept_invite():
     if not sess:
         return
 
-    # Wrap in InviteLogic so we can call its method
+    # Wrap in InviteLogic can call its method
     invite = InviteLogic(sess.proposer, sess.time, sess.place, sess.topic, status=sess.status, accepted=False)
     invite.accept_invite()
 
