@@ -36,5 +36,6 @@ class TestStudySessions(unittest.TestCase):
     #     self.assertFalse(added2)
     #     self.assertEqual(len(p.schedule), 1)
 
+    pass
 if __name__ == "__main__":
     unittest.main()

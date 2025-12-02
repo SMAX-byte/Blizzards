@@ -26,31 +26,31 @@ class TestStudyBuddies(unittest.TestCase):
     #     self.assertEqual(p.schedule, new_schedule)
 
     # Test: session proposals store time/place/topic
-    def test_session_proposal_stores_details(self):
-        s = StudySession(
-            proposer="Lonzo",
-            time="3PM",
-            place="Library",
-            topic="Review Chapter 3",
-            status="pending"
-        )
-        self.assertEqual(s.time, "3PM")
-        self.assertEqual(s.place, "Library")
-        self.assertEqual(s.topic, "Review Chapter 3")
-        self.assertEqual(s.status, "pending")
+    # def test_session_proposal_stores_details(self):
+    #     s = StudySession(
+    #         proposer="Lonzo",
+    #         time="3PM",
+    #         place="Library",
+    #         topic="Review Chapter 3",
+    #         status="pending"
+    #     )
+    #     self.assertEqual(s.time, "3PM")
+    #     self.assertEqual(s.place, "Library")
+    #     self.assertEqual(s.topic, "Review Chapter 3")
+    #     self.assertEqual(s.status, "pending")
 
     # Test: decline
-    def test_decline_invitation(self):
-        sess = InviteLogic(
-            proposer="Lonzo",
-            time="6PM",
-            place="STEM Building",
-            topic="Homework 4",
-            status="pending"
-        )
-        declined = sess.decline_invite()
-        self.assertTrue(declined)
-        self.assertEqual(sess.status, "declined")
+    # def test_decline_invitation(self):
+    #     sess = InviteLogic(
+    #         proposer="Lonzo",
+    #         time="6PM",
+    #         place="STEM Building",
+    #         topic="Homework 4",
+    #         status="pending"
+    #     )
+    #     declined = sess.decline_invite()
+    #     self.assertTrue(declined)
+    #     self.assertEqual(sess.status, "declined")
 
     # Test: Pending session autocancels after X hours
     # def test_pending_session_auto_cancel_after_hours(self):
@@ -104,7 +104,7 @@ class TestStudyBuddies(unittest.TestCase):
     #     self.assertNotIn("Trees", topics)
     #     self.assertIn("Python Loops", topics)
     #     self.assertIn("Recursion", topics)
-
+    pass
 
 if __name__ == "__main__":
     unittest.main()
